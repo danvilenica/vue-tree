@@ -1,5 +1,6 @@
 import { expect, describe, it, beforeEach, afterEach, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { nextTick } from 'vue';
 import TreeViewNode from '../../src/components/TreeViewNode.vue';
 import { generateNodes } from '../data/node-generator.js';
 import SelectionMode from '../../src/enums/selectionMode';
@@ -128,8 +129,9 @@ describe('TreeViewNode.vue (interactions)', () => {
         expect(wrapper.vm.model.treeNodeSpec.state.expanded).to.be.true;
       });
 
-      it('should emit the treeNodeExpandedChange event', () => {
+      it('should emit the treeNodeExpandedChange event', async () => {
         expander.trigger('click');
+        await nextTick();
         expect(wrapper.emitted().treeNodeExpandedChange.length).to.equal(1);
       });
 

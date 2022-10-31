@@ -848,12 +848,8 @@ describe('TreeViewNode.vue', () => {
       await wrapper.vm.$nextTick();
     });
 
-    it('should have a childrenPropName matching the valid-children model property', () => {
-      expect(wrapper.vm.childrenPropName).to.equal('children');
-    });
-
-    it('should have a children list of the model[childrenPropName] property', () => {
-      expect(wrapper.vm.model[wrapper.vm.childrenPropName].length).to.equal(2);
+    it('should have a children property of the expected values', () => {
+      expect(wrapper.vm.model.children.length).to.equal(2);
     });
   });
 });

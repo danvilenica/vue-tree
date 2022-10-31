@@ -195,7 +195,7 @@ describe('TreeView.vue (ARIA)', () => {
 
     beforeEach(async () => {
       wrapper = await createWrapper({ initialModel: generateNodes(['ecs', 'eCsf']) });
-      wrapper.vm.focusFirstNode();
+      wrapper.vm.focusFirst(wrapper.vm.model);
     });
 
     it('should set the focusable attribute of the first node to true', () => {
@@ -207,21 +207,21 @@ describe('TreeView.vue (ARIA)', () => {
 
     it('should focus the last visible node', async () => {
       wrapper = await createWrapper({ initialModel: generateNodes(['ecsf', 'eCs']) });
-      wrapper.vm.focusLastNode();
+      wrapper.vm.focusLast(wrapper.vm.model);
 
       expect(wrapper.vm.model[1].treeNodeSpec.focusable).to.be.true;
     });
 
     it('should ignore non-expanded child nodes', async () => {
       wrapper = await createWrapper({ initialModel: generateNodes(['ecsf', 'eCs', 'ecs', ['ecs']]) });
-      wrapper.vm.focusLastNode();
+      wrapper.vm.focusLast(wrapper.vm.model);
 
       expect(wrapper.vm.model[2].treeNodeSpec.focusable).to.be.true;
     });
 
     it('should focus the deepest last node', async () => {
       wrapper = await createWrapper({ initialModel: generateNodes(['ecsf', 'eCs', 'Ecs', ['ecs']]) });
-      wrapper.vm.focusLastNode();
+      wrapper.vm.focusLast(wrapper.vm.model);
 
       expect(wrapper.vm.model[2].children[0].treeNodeSpec.focusable).to.be.true;
     });
@@ -272,7 +272,7 @@ describe('TreeView.vue (ARIA)', () => {
 
       beforeEach(async () => {
         wrapper = await createWrapper({ initialModel: generateNodes(['ecsf', 'eCs']) });
-        wrapper.vm.handlePreviousFocus(wrapper.vm.model[0]);
+        wrapper.vm.focusPrevious(wrapper.vm.model, wrapper.vm.model[0]);
       });
 
       it('should not change focusableness', () => {
@@ -284,7 +284,7 @@ describe('TreeView.vue (ARIA)', () => {
 
       beforeEach(async () => {
         wrapper = await createWrapper({ initialModel: generateNodes(['ecs', ['ecs', 'ecs'], 'ecsf']) });
-        wrapper.vm.handlePreviousFocus(wrapper.vm.model[1]);
+        wrapper.vm.focusPrevious(wrapper.vm.model, wrapper.vm.model[1]);
       });
 
       it('should set the previous node as focusable', () => {
@@ -296,7 +296,7 @@ describe('TreeView.vue (ARIA)', () => {
 
       beforeEach(async () => {
         wrapper = await createWrapper({ initialModel: generateNodes(['Ecs', ['ecs', 'ecs'], 'ecsf']) });
-        wrapper.vm.handlePreviousFocus(wrapper.vm.model[1]);
+        wrapper.vm.focusPrevious(wrapper.vm.model, wrapper.vm.model[1]);
       });
 
       it('should set the last expanded previous node as focusable', () => {
@@ -311,7 +311,7 @@ describe('TreeView.vue (ARIA)', () => {
 
       beforeEach(async () => {
         wrapper = await createWrapper({ initialModel: generateNodes(['ecs', 'eCsf']) });
-        wrapper.vm.handleNextFocus(wrapper.vm.model[1]);
+        wrapper.vm.focusNext(wrapper.vm.model, wrapper.vm.model[1]);
       });
 
       it('should not change focusableness', () => {
@@ -323,7 +323,7 @@ describe('TreeView.vue (ARIA)', () => {
 
       beforeEach(async () => {
         wrapper = await createWrapper({ initialModel: generateNodes(['ecsf', ['ecs', 'ecs'], 'ecs']) });
-        wrapper.vm.handleNextFocus(wrapper.vm.model[0]);
+        wrapper.vm.focusNext(wrapper.vm.model, wrapper.vm.model[0]);
       });
 
       it('should set the next sibling node as focusable', () => {
@@ -338,14 +338,14 @@ describe('TreeView.vue (ARIA)', () => {
       });
 
       it('should set the first expanded child node as focusable', () => {
-        wrapper.vm.handleNextFocus(wrapper.vm.model[0]);
+        wrapper.vm.focusNext(wrapper.vm.model, wrapper.vm.model[0]);
         expect(wrapper.vm.model[0].children[0].treeNodeSpec.focusable).to.be.true;
       });
 
       describe('and the children are explicitly ignored', () => {
 
         it('sets the next sibling node as focusable', () => {
-          wrapper.vm.handleNextFocus(wrapper.vm.model[0], true);
+          wrapper.vm.focusNext(wrapper.vm.model, wrapper.vm.model[0], true);
           expect(wrapper.vm.model[1].treeNodeSpec.focusable).to.be.true;
         });
       });

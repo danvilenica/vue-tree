@@ -595,7 +595,7 @@ describe('TreeViewNode.vue ARIA', () => {
       beforeEach(async () => {
         initialModel = generateNodes(['Es', ['esf']])[0];
         wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-        wrapper.vm.handlePreviousFocus(initialModel.children[0]);
+        wrapper.vm.focusPreviousNode(initialModel.children[0]);
         await wrapper.vm.$nextTick();
       });
 
@@ -609,7 +609,7 @@ describe('TreeViewNode.vue ARIA', () => {
       beforeEach(async () => {
         initialModel = generateNodes(['Es', ['Es', ['s', 's'], 'sf']])[0];
         wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-        wrapper.vm.handlePreviousFocus(initialModel.children[1]);
+        wrapper.vm.focusPreviousNode(initialModel.children[1]);
         await wrapper.vm.$nextTick();
       });
 
@@ -623,7 +623,7 @@ describe('TreeViewNode.vue ARIA', () => {
       beforeEach(async () => {
         initialModel = generateNodes(['Es', ['es', ['s', 's'], 'sf']])[0];
         wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-        wrapper.vm.handlePreviousFocus(initialModel.children[1]);
+        wrapper.vm.focusPreviousNode(initialModel.children[1]);
         await wrapper.vm.$nextTick();
       });
 
@@ -645,7 +645,7 @@ describe('TreeViewNode.vue ARIA', () => {
         beforeEach(async () => {
           initialModel = generateNodes(['Es', ['Esf', ['s', 's'], 's']])[0];
           wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-          wrapper.vm.handleNextFocus(initialModel.children[0], false);
+          wrapper.vm.focusNextNode(initialModel.children[0], false);
           await wrapper.vm.$nextTick();
         });
 
@@ -661,7 +661,7 @@ describe('TreeViewNode.vue ARIA', () => {
           beforeEach(async () => {
             initialModel = generateNodes(['Es', ['Esf', ['s', 's'], 's']])[0];
             wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-            wrapper.vm.handleNextFocus(initialModel.children[0], true);
+            wrapper.vm.focusNextNode(initialModel.children[0], true);
             await wrapper.vm.$nextTick();
           });
 
@@ -675,7 +675,7 @@ describe('TreeViewNode.vue ARIA', () => {
           beforeEach(async () => {
             initialModel = generateNodes(['Es', ['Esf', ['s', 's']]])[0];
             wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-            wrapper.vm.handleNextFocus(initialModel.children[0], true);
+            wrapper.vm.focusNextNode(initialModel.children[0], true);
             await wrapper.vm.$nextTick();
           });
 
@@ -694,7 +694,7 @@ describe('TreeViewNode.vue ARIA', () => {
         beforeEach(async () => {
           initialModel = generateNodes(['Es', ['esf', ['s', 's'], 's']])[0];
           wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-          wrapper.vm.handleNextFocus(initialModel.children[0], false);
+          wrapper.vm.focusNextNode(initialModel.children[0], false);
           await wrapper.vm.$nextTick();
         });
 
@@ -708,7 +708,7 @@ describe('TreeViewNode.vue ARIA', () => {
         beforeEach(async () => {
           initialModel = generateNodes(['Es', ['esf', ['s', 's']]])[0];
           wrapper = await createWrapper(Object.assign(defaultProps, { initialModel }));
-          wrapper.vm.handleNextFocus(initialModel.children[0], false);
+          wrapper.vm.focusNextNode(initialModel.children[0], false);
           await wrapper.vm.$nextTick();
         });
 
