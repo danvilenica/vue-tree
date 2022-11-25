@@ -1,5 +1,5 @@
 import { expect, describe, it } from 'vitest';
-import { isProbablyObject, cheapCopyObject } from '../../src/objectMethods.js';
+import { isProbablyObject, cheapCopyObject } from './objectMethods.js';
 
 describe('objectMethods.js', () => {
 

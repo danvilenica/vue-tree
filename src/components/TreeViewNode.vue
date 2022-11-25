@@ -7,7 +7,7 @@
       ref="nodeElement"
       class="grtvn"
       :class="[customClasses.treeViewNode,
-               tns._.dragging ? 'grtvn-dragging' : '']"
+      tns._.dragging ? 'grtvn-dragging' : '']"
       role="treeitem"
       :tabindex="tabIndex"
       :aria-expanded="ariaExpanded"
@@ -16,10 +16,10 @@
 
     <div class="grtvn-self"
          :class="[customClasses.treeViewNodeSelf,
-                  isEffectivelySelected ? 'grtvn-self-selected' : '',
-                  isEffectivelySelected ? customClasses.treeViewNodeSelfSelected : '',
-                  tns._.isDropTarget ? 'grtvn-self-drop-target': '',
-                  tns._.isChildDropTarget ? 'grtvn-self-child-drop-target': '']"
+         isEffectivelySelected ? 'grtvn-self-selected' : '',
+         isEffectivelySelected ? customClasses.treeViewNodeSelfSelected : '',
+         tns._.isDropTarget ? 'grtvn-self-drop-target': '',
+         tns._.isChildDropTarget ? 'grtvn-self-child-drop-target': '']"
          :draggable="tns.draggable"
          :dragging="tns._.dragging"
          @click="onClick"
@@ -44,8 +44,8 @@
               :title="tns.expanderTitle"
               class="grtvn-self-expander"
               :class="[customClasses.treeViewNodeSelfExpander,
-                       tns.state.expanded ? 'grtvn-self-expanded' : '',
-                       tns.state.expanded ? customClasses.treeViewNodeSelfExpanded : '']"
+              tns.state.expanded ? 'grtvn-self-expanded' : '',
+              tns.state.expanded ? customClasses.treeViewNodeSelfExpanded : '']"
               @click="toggleNodeExpanded">
               <i class="grtvn-self-expanded-indicator"
                  :class="customClasses.treeViewNodeSelfExpandedIndicator"></i></button>
@@ -175,7 +175,7 @@
           role="group"
           :aria-hidden="!tns.state.expanded">
         <TreeViewNode v-for="nodeModel in children"
-                      :key="nodeModel[tns && tns.idProperty ? tns.idProperty : 'id']"
+                      :key="nodeModel[nodeModel.treeNodeSpec?.idProperty ?? 'id']"
                       :depth="depth + 1"
                       :initial-model="nodeModel"
                       :model-defaults="modelDefaults"

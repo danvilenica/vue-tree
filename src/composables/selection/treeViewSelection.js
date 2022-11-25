@@ -95,9 +95,6 @@ export function useTreeViewSelection(treeModel, selectionMode, focusableNodeMode
     emit(TreeEvent.SelectedChange, node);
   }
 
-  function handleNewNodeFocused(node) {
-  }
-
   function exclusivelySelectNode(node) {
     depthFirstTraverse((current) => {
       if (isSelected(current) && current.id !== node.id) {

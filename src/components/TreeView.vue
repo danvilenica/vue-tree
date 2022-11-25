@@ -8,7 +8,7 @@
     </slot>
     <ul class="grtv" role="tree" :aria-multiselectable="ariaMultiselectable" v-if="areNodesLoaded">
       <TreeViewNode v-for="(nodeModel) in model"
-        :key="nodeModel[nodeModel.treeNodeSpec && nodeModel.treeNodeSpec.idProperty ? nodeModel.treeNodeSpec.idProperty : 'id']"
+        :key="nodeModel[nodeModel.treeNodeSpec?.idProperty ?? 'id']"
         :aria-key-map="ariaKeyMap"
         :depth="0"
         :model-defaults="modelDefaults"

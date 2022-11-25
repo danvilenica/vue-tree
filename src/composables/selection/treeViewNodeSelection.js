@@ -21,7 +21,7 @@ export function useTreeViewNodeSelection(nodeModel, selectionMode, emit) {
     toggleSelected } = useSelection(selectionMode);
 
   watch(() => nodeModel.value.treeNodeSpec.state.selected, () => {
-    emit(TreeEvent.SelectedChange, nodeModel.value)
+    emit(TreeEvent.SelectedChange, nodeModel.value);
   });
 
   watch(() => nodeModel.value.treeNodeSpec.focusable, function (newValue) {

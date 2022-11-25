@@ -1,3 +1,4 @@
+import { unref } from 'vue';
 import { effectAllowed as EffectAllowed } from '../enums/dragDrop.js'
 import InputType from '../enums/inputType';
 import { useObjectMethods } from './objectMethods.js';
@@ -19,7 +20,7 @@ export function useNodeDataNormalizer(model, modelDefaults, radioGroupValues) {
 
     const tns = model.value.treeNodeSpec;
 
-    assignDefaultProps(modelDefaults, tns);
+    assignDefaultProps(unref(modelDefaults), tns);
 
     // Set expected properties if not provided
     if (typeof tns.childrenProperty !== 'string') {
