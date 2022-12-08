@@ -25,6 +25,10 @@
       "import": "./dist/grapoza-tree-lib.es.js",
       "require": "./dist/grapoza-tree-lib.umd.js"
     },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    },
     "./css": "./dist/style.css"
   },
   "scripts": {
